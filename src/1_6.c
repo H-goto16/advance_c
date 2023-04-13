@@ -19,6 +19,7 @@ int main(void) {
     }
   } while  (((month > January) && (month < December)));
 
+
   switch (month) {
 
     case March:
@@ -49,7 +50,7 @@ int main(void) {
       printf("Does not exit such month\n");
   }
 
-  printf("%s", season);
+  printf("%d\n", season);
 
   return 0;
 }
