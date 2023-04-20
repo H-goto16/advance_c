@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-typedef enum janken {Gu = 0, Choki = 2, Pa = 5} JPON;
+typedef enum janken { Gu = 0, Choki = 2, Pa = 5 } JPON;
+typedef enum  player { sys = 0, cha } Player;  
 
+JPON inputNumber(void);
 int siakoro(void);
 JPON sysjan(int sainome);
 int shoubu(JPON kenin, JPON kenout);
@@ -19,6 +21,22 @@ int main(void) {
   int shoubukekka;
   int isGoodInputNum;
 
+  choken = inputNumber();
+  sai = saikoro();
+  sysken = sysjan(sai);
+  shoubukekka = shoubu(choken, sysken);
+  anatanoken(choken);
+  watashinoken(sysken);
+  kekka(shoubukekka);
+
+  printf("\n終わります。お疲れさまでした。\n\n");
+  return 0;
+}
+
+JPON inputNumber(void) {
+  JPON choken;
+  int ken_buf;
+  int isGoodInputNum;
   do {
     printf("\nジャンケンをしましょう\n");
     printf("グーは0 チョキは2 パーは5を入れます。\n");
@@ -34,18 +52,7 @@ int main(void) {
     }
   } while (isGoodInputNum);
 
-  sai = saikoro();
-  sysken = sysjan(sai);
-
-  shoubukekka = shoubu(choken, sysken);
-
-  printf("\a");
-  anatanoken(choken);
-  watashinoken(sysken);
-  kekka(shoubukekka);
-
-  printf("\n終わります。お疲れさまでした。\n\n");
-  return 0;
+  return choken;
 }
 
 int saikoro(void) {
