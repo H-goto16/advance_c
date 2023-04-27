@@ -19,7 +19,7 @@ int main(void) {
   int ken_buf;
   int sai;
   int shoubukekka;
-  int isGoodInputNum;
+  int isCorrectInputNum;
 
   choken = inputNumber();
   sai = saikoro();
@@ -36,7 +36,7 @@ int main(void) {
 JPON inputNumber(void) {
   JPON choken;
   int ken_buf;
-  int isGoodInputNum;
+  int isCorrectInputNum;
   do {
     printf("\nジャンケンをしましょう\n");
     printf("グーは0 チョキは2 パーは5を入れます。\n");
@@ -45,12 +45,12 @@ JPON inputNumber(void) {
     scanf("%d", &ken_buf);
     choken = (JPON)ken_buf;
 
-    isGoodInputNum = (choken != Gu) && (choken != Choki) && (choken != Pa);
+    isCorrectInputNum = (choken != Gu) && (choken != Choki) && (choken != Pa);
 
-    if (isGoodInputNum) {
+    if (isCorrectInputNum) {
       printf("\n@@@@正しく入れてください@@@@\n");
     }
-  } while (isGoodInputNum);
+  } while (isCorrectInputNum);
 
   return choken;
 }
