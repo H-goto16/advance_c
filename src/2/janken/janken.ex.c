@@ -16,8 +16,7 @@ int main(void) {
     kekka(shoubukekka);
   }
 
-  outputResult(result);
+    outputResult(result);
   printf("\n終わります。お疲れさまでした。\n\n");
   return 0;
 }
-
