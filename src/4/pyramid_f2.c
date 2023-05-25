@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 int main(void) {
-  char filename[] = "pyramid_f2.txt";
+  char filename[] = "pyramid_f1.txt";
   FILE *fp;
   int i, h, j, k;
 
-  fp = fopen(filename, "w");
+  fp = fopen(filename, "a");
   if (fp == NULL) {
     printf("File open error! \n");
     exit(1);
@@ -28,7 +28,7 @@ int main(void) {
   }
 
   fclose(fp);
-  printf("ファイル「%s」に書き込みました。\n", filename);
+  printf("ファイル「%s」に追加書き込みました。\n", filename);
 
   return 0;
 }
