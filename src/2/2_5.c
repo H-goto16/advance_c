@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "2_1.h"
 
 void watashinoken(JPON ken) {
   switch(ken) {

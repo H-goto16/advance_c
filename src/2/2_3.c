@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include "2_1.h"
+
 int sysjan(int sainome) {
   int pon;
   switch (sainome) {
