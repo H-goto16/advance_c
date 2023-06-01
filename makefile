@@ -12,10 +12,10 @@ TARGETS := $(OBJECTS:%.o=%)
 all: $(TARGETS)
 
 %: %.o
-	$(CC) $(CFLAGS) $< -o $(BINDIR)/$@
+	$(CC) $(CFLAGS) $< -o $(BINDIR)/$@.exe
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $(BINDIR)/$@.exe
 
 clean:
 	rm -f $(OBJECTS) $(TARGETS) $(BINDIR)/*
