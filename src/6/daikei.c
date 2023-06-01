@@ -5,11 +5,13 @@ float culcSq(int up, int down, int height) {
 }
 
 int main(void) {
-  struct daikei {
+  typedef struct daikei {
     int kahen;
     int jouhen;
     int takasa;
-  } da, db, dc;
+  } SideLength;
+
+  SideLength da, db;
   
   puts("台形A");
   printf("下辺 = ");
@@ -26,9 +28,7 @@ int main(void) {
   printf("高さ = ");
   scanf("%d", &db.takasa);
 
-  dc.jouhen = da.jouhen + db.jouhen;
-  dc.kahen = da.kahen + db.kahen;
-  dc.takasa = da.takasa + db.takasa;
+  SideLength dc = {da.jouhen + db.jouhen, da.kahen + db.kahen, da.takasa + db.takasa};
 
   printf("台形Aの面積 : %f\n台形Bの面積 : %f\n台形Cの面積 : %f\n", culcSq(da.jouhen, da.kahen, da.takasa), culcSq(db.jouhen, db.kahen, db.takasa), culcSq(dc.jouhen, dc.kahen, dc.takasa));
 
