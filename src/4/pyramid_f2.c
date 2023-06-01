@@ -23,7 +23,7 @@ int main(void) {
     }
     for (k = 1; k <= 2 * i - 1; k++) {
       fprintf(fp, "%d", i % 10);
-    }
+    } 
     fprintf(fp, "\n");
   }
 
