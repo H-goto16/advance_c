@@ -4,7 +4,7 @@
 int main(void) {
   char filename[] = "pyramid_f1.txt";
   FILE *fp;
-  int i, h, j, k;
+  int i, h, j;
 
   fp = fopen(filename, "a");
   if (fp == NULL) {
@@ -21,7 +21,7 @@ int main(void) {
     for (j = 1; j <= h - i; j++) {
       fprintf(fp, " ");
     }
-    for (k = 1; k <= 2 * i - 1; k++) {
+    for (j = 1; j <= 2 * i - 1; j++) {
       fprintf(fp, "%d", i % 10);
     } 
     fprintf(fp, "\n");
