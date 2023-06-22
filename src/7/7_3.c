@@ -48,9 +48,11 @@ int main() {
         }
       } else if (input == 'Q') {
         printf("スタックの中身は %s \n", stack);
-      } else if (input == 'P' && input == 'Q' && input == 'O') {
+      } else if ((input == 'P' || input == 'Q' || input == 'O')) {
+        printf("P or O or Qではない文字列です。\n");
+        input == NULL;
       }
-    } while (input != 'P' && input != 'O' && input != 'Q');
+    } while ((input == 'P' || input == 'Q' || input == 'O'));
     if (input == 'Q') {
       break;
     }
