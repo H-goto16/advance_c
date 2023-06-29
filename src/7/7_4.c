@@ -1,67 +1,64 @@
 #include <stdio.h>
 #define QUEUE_SIZE 10
+#define INPUT_STRING 50
+
 int queue_num;
 
 char queue[QUEUE_SIZE];
 char string[] = "ABCDEFGHIJKLMN";
 
-int enqueue(char enq_data) {
-  int i;
-  if (queue_num >= QUEUE_SIZE) {
+int enqueue(char enqueue_data) {
+  if (queue_num == QUEUE_SIZE) {
+    printf("Queue is full.\n");
     return 0;
-  } else {
-    if (queue_num >= 1) {
-      for (i = queue_num - 1 ; i >= 0; i--) {
-        queue[i + 1] = queue[i];
-      }
-    }
   }
-  queue[0] = enq_data;
+  queue[queue_num] = enqueue_data;
   queue_num++;
-  return 0;
+  return 1;
 }
 
 int dequeue(char *deq_data) {
   if (queue_num == 0) {
-    return 1;
-  } else {
-    *deq_data = queue[queue_num -1];
-    queue_num--;
+    printf("Queue is empty.\n");
     return 0;
   }
+  *deq_data = queue[0];
+  for (int i = 0; i < queue_num - 1; i++) {
+    queue[i] = queue[i + 1];
+  }
+  queue[queue_num - 1] = '\0';
+  queue_num--;
+  return 1;
 }
 
 int main() {
+  char input[INPUT_STRING];
   char dequeue_temp;
   int return_num;
   int string_num = 0;
 
-  for (;;) {
-    char input;
-    do {
-      printf("エンキュー(E) デキュー(D) 終了(Q)を入力してください。");
-      input = getchar();
-      printf("%d\n", (input == 'E' || input == 'D' || input == 'O'));
-      if (input == 'E') {
-        return_num = enqueue(string[string_num]);
-        if (!return_num) {
-          printf("Stackoverflow\n");
-        } else {
-          string_num++;
-        }
-      } else if (input == 'D') {
-        return_num = dequeue(&dequeue_temp);
-        if (!return_num) {
-          printf("Stackunderflow\n");
-        }
-      } else if (input == 'Q') {
-        printf("キューの中身は %s \n", queue);
-      } else if ((input == 'E' || input == 'D' || input == 'O')) {
-        printf("P or O or Qではない文字列です。\n");
-        input == NULL;
+  scanf("%s", input);
+
+  for (int i = 0; i <= INPUT_STRING; i++) {
+    if (input[i] == 'E') {
+      int res = enqueue(string[string_num]);
+      if (res) {
+        string_num++;
+      } else {
+        printf("Queue overflow\n");
+        break;
       }
-    } while ((input == 'E' || input == 'D' || input == 'O'));
-    if (input == 'Q') {
+    } else if (input[i] == 'D') {
+      int res = dequeue(&dequeue_temp);
+      if (!res) {
+        printf("Queue underflow\n");
+        break;
+      }
+    } else if (input[i] == '\0') {
+      printf("%s\n", queue);
+      break;
+    } else {
+      printf("EかDを入力してください。\n");
       break;
     }
   }
