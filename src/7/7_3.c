@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define STACK_SIZE 10
+#define INPUT_STRING 50
 int stack_num;
 
 char stack[STACK_SIZE];
@@ -18,45 +19,40 @@ int pop(char *pop_data) {
   if (stack_num > 0) {
     stack_num--;
     *pop_data = stack[stack_num];
+    stack[stack_num] = '\0';
     return 1;
   }
   return 0;
 }
 
 int main() {
+  char input[INPUT_STRING];
   char pop_temp;
-  int return_num;
-  int push_num = 0;
+  unsigned short int string_num = 0; 
 
-  for (;;) {
-    char input;
-    do {
-      printf("プッシュ(P) ポップ(O) 終了(Q)を入力してください。");
-      input = getchar();
-      printf("%d\n", (input == 'P' || input == 'Q' || input == 'O'));
-      if (input == 'P') {
-        return_num = push(string[push_num]);
-        if (!return_num) {
-          printf("Stackoverflow\n");
-        } else {
-          push_num++;
-        }
-      } else if (input == 'O') {
-        return_num = pop(&pop_temp);
-        if (!return_num) {
-          printf("Stackunderflow\n");
-        }
-      } else if (input == 'Q') {
-        printf("スタックの中身は %s \n", stack);
-      } else if ((input == 'P' || input == 'Q' || input == 'O')) {
-        printf("P or O or Qではない文字列です。\n");
-        input == NULL;
+  scanf("%s", input);
+
+  for (int i = 0; i <= INPUT_STRING; i++) {
+    if (input[i] == 'P') {
+      int res = push(string[string_num]);
+      if (res) {
+        string_num++;
+      } else {
+        printf("Stack overflow\n");
+        break;
       }
-    } while ((input == 'P' || input == 'Q' || input == 'O'));
-    if (input == 'Q') {
+    } else if (input[i] == 'O') {
+      int res = pop(&pop_temp);
+      if (!res) {
+        printf("Stack underflow\n");
+        break;
+      }
+    } else if (input[i] == '\0') {
+      printf("%s\n", stack);
+      break;
+    } else {
+      printf("PかOを入力してください。\n");
       break;
     }
   }
-
-  return 0;
 }
